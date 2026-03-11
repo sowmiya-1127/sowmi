@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secret Surprise</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background: linear-gradient(135deg,#ff9a9e,#fecfef);
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+flex-direction:column;
+}
+
+/* heart animation */
+
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation: float 6s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform: translateY(100vh);
+opacity:1;
+}
+100%{
+transform: translateY(-10vh);
+opacity:0;
+}
+}
+
+/* password box */
+
+.box{
+background:rgba(255,255,255,0.9);
+padding:40px;
+border-radius:15px;
+box-shadow:0px 0px 20px gray;
+z-index:1;
+}
+
+h2{
+color:#ff0066;
+}
+
+input{
+padding:12px;
+font-size:16px;
+border-radius:8px;
+border:1px solid gray;
+}
+
+button{
+padding:12px 25px;
+background:#ff4d88;
+border:none;
+font-size:16px;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff0066;
+}
+
+#msg{
+color:red;
+margin-top:10px;
+}
+
+/* slideshow */
+
+#slideshow{
+display:none;
+}
+
+#slideshow img{
+width:300px;
+border-radius:15px;
+box-shadow:0 0 20px gray;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box" id="loginBox">
+
+<h2>🎁 Scan pannita! Secret password enter pannu ❤️</h2>
+
+<input type="password" id="pass" placeholder="Enter Password">
+
+<br><br>
+
+<button onclick="check()">Open Surprise</button>
+
+<p id="msg"></p>
+
+</div>
+
+<!-- slideshow area -->
+
+<div id="slideshow">
+
+<h1>❤️ Surprise For You ❤️</h1>
+
+<img id="slide" src="photo1.jpg">
+
+</div>
+
+<script>
+
+/* password check */
+
+function check(){
+
+var password=document.getElementById("pass").value;
+
+if(password=="1127")
+{
+document.getElementById("loginBox").style.display="none";
+document.getElementById("slideshow").style.display="block";
+startSlide();
+}
+else
+{
+document.getElementById("msg").innerHTML="Wrong Password!";
+}
+
+}
+
+/* slideshow */
+
+var photos=["sowmi (2).jpg","sowmi (3).jpg","sowmi (4).jpg","sowmi (5).jpg","sowmi (6).jpg","sowmi (7).jpg","sowmi (8).jpg","sowmi (9).jpg"];
+var i=0;
+
+function startSlide(){
+
+
+setInterval(function(){
+
+i++;
+
+if(i>=photos.length){
+i=0;
+}
+
+document.getElementById("slide").src=photos[i];
+
+},2000);
+
+}
+
+/* heart animation */
+
+function createHeart(){
+
+var heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(function(){
+heart.remove();
+},6000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
